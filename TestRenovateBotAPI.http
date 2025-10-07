@@ -1,0 +1,6 @@
+@TestRenovateBotAPI_HostAddress = http://localhost:5182
+
+GET {{TestRenovateBotAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
