@@ -59,7 +59,18 @@ jobs:
       # or others). This is typically only required for manual builds.
       # - name: Setup runtime (example)
       #   uses: actions/setup-example@v1
-      
+      - name: Build C#
+        if: matrix.language == 'csharp'
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+      - name: Restore dependencies
+        if: matrix.language == 'csharp'
+        run: dotnet restore
+      - name: Build solution
+        if: matrix.language == 'csharp'
+        run: dotnet build --no-restore --configuration Release
+        
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
